@@ -20,7 +20,7 @@ public class FindDiff {
      *
      * Important Notice: HashSet is not thread-safe! Do not extend this algorithm for multi-threading
      */
-    private HashSet<String> oddNumbers;
+    private HashSet<String> oddNumbers = new HashSet<>();
 
     /**
      * Find number which present odd times in file
@@ -45,7 +45,7 @@ public class FindDiff {
         {
             throw new Exception("File contains more then one odd-time element");
         }
-        if (oddNumbers.size() == 1)
+        if (oddNumbers.size() == 0)
         {
             throw new Exception("File does not contains any odd-time elements");
         }
