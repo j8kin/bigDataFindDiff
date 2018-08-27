@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class FindDiffTest {
 
@@ -11,7 +12,7 @@ public class FindDiffTest {
         FindDiff sol = new FindDiff();
         try {
             GenerateFile.newTestFile("bigNumber.file", 10, new ArrayList<>());
-            String res = sol.findOddTimeNumber("bigNumber.file");
+            Integer res = sol.findOddTimeNumber("bigNumber.file"); // exception should occurs
             fail();
         }
         catch (Exception e) {
@@ -24,9 +25,8 @@ public class FindDiffTest {
         FindDiff sol = new FindDiff();
         try {
             GenerateFile.newTestFile("bigNumber.file", 10,
-                    new ArrayList<>(Arrays.asList("111111111111111111111111111111111111111111111111111111111111111",
-                            "222222222222222222222222222222222222222222222222")));
-            String res = sol.findOddTimeNumber("bigNumber.file");
+                    new ArrayList<>(Arrays.asList("1111111111", "22222222")));
+            Integer res = sol.findOddTimeNumber("bigNumber.file");
             fail();
         }
         catch (Exception e) {
@@ -39,9 +39,9 @@ public class FindDiffTest {
         FindDiff sol = new FindDiff();
         try {
             GenerateFile.newTestFile("bigNumber.file", 10,
-                    new ArrayList<>(Arrays.asList("111111111111111111111111111111111111111111111111111111111111111")));
-            String res = sol.findOddTimeNumber("bigNumber.file");
-            assertEquals("111111111111111111111111111111111111111111111111111111111111111", res);
+                    new ArrayList<>(Collections.singletonList("1111111111")));
+            Integer res = sol.findOddTimeNumber("bigNumber.file");
+            assertEquals(1111111111, (int) res);
         }
         catch (Exception e) {
             System.out.println("Unexpected exception: " + e.getMessage());
@@ -56,10 +56,10 @@ public class FindDiffTest {
     public void findOddTimeNumber4() {
         FindDiff sol = new FindDiff();
         try {
-            GenerateFile.newTestFile("bigNumber.file", 20000000,
-                    new ArrayList<>(Arrays.asList("111111111111111111111111111111111111111111111111111111111111111")));
-            String res = sol.findOddTimeNumber("bigNumber.file");
-            assertEquals("111111111111111111111111111111111111111111111111111111111111111", res);
+            GenerateFile.newTestFile("bigNumber.file", 80000000,
+                    new ArrayList<>(Collections.singletonList("1111111111")));
+            Integer res = sol.findOddTimeNumber("bigNumber.file");
+            assertEquals(1111111111, (int) res);
         }
         catch (Exception e) {
             System.out.println("Unexpected exception: " + e.getMessage());

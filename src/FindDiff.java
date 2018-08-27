@@ -13,29 +13,29 @@ import java.util.HashSet;
  *    since HDD head will take an additional time to move to a new position for each thread.
  *  If SSD drive is used then multi-thread algorithm is preferred.
  */
-public class FindDiff {
+class FindDiff {
 
     /**
      * oddNumber contains current set of numbers read from file
      *
      * Important Notice: HashSet is not thread-safe! Do not extend this algorithm for multi-threading
      */
-    private HashSet<String> oddNumbers = new HashSet<>();
+    private HashSet<Integer> oddNumbers = new HashSet<>();
 
     /**
      * Find number which present odd times in file
      * @param filename name of the file to be analysed
      * @return odd number in file
      */
-    public String findOddTimeNumber (String filename) throws Exception  {
+    Integer findOddTimeNumber(String filename) throws Exception  {
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line = br.readLine();
 
             while (line != null) {
                 //first try to remove element from HashSet if it is not exist - add it
-                if (!oddNumbers.remove(line)) {
-                    oddNumbers.add(line);
+                if (!oddNumbers.remove(Integer.parseInt(line))) {
+                    oddNumbers.add(Integer.parseInt(line));
                 }
                 line = br.readLine();
             }

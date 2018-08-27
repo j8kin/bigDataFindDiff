@@ -7,12 +7,12 @@ import java.util.concurrent.Executors;
 /**
  * This class is for test purposes only and generate file for tests
  */
-public class GenerateFile {
-     public static void newTestFile(String filename, int nLines, ArrayList<String> additionalLines) {
+class GenerateFile {
+     static void newTestFile(String filename, int nLines, ArrayList<String> additionalLines) {
          try (PrintWriter out = new PrintWriter("filename.txt")) {
              int j = 0;
              while (j < nLines) {
-                 int numLength = (int) (Math.random() * 50 + 1);
+                 int numLength = (int) (Math.random() * 8 + 1);
                  String textNumber = "";
                  for (int i = 0; i < numLength; i++) {
                      textNumber += Integer.toString((int) (Math.random() * 10));
@@ -36,7 +36,6 @@ public class GenerateFile {
          }
 
 
-         String homeDirectory = System.getProperty("user.home");
          Process process;
          try {
              if (!additionalLines.isEmpty()){
@@ -52,10 +51,8 @@ public class GenerateFile {
              Executors.newSingleThreadExecutor().submit(streamGobbler);
              int exitCode = process.waitFor();
              assert exitCode == 0;
-         } catch (IOException e) {
-             e.printStackTrace();
-         } catch (InterruptedException e) {
+         } catch (IOException | InterruptedException e) {
              e.printStackTrace();
          }
-    }
+     }
 }
