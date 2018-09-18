@@ -66,4 +66,22 @@ public class FindDiffTest {
             fail();
         }
     }
+
+    /**
+     * Test ~1Gb file search multi-thread
+     */
+    @org.junit.Test
+    public void findOddTimeNumber5() {
+        try {
+            GenerateFile.newTestFile("bigNumber.file", 80000000,
+                    new ArrayList<>(Collections.singletonList("1111111111")));
+            var sol = new FindDiffMultiThread();
+            var res = sol.findOddTimeNumber("bigNumber.file", 5);
+            assertEquals("1111111111", res);
+        }
+        catch (Exception e) {
+            System.out.println("Unexpected exception: " + e.getMessage());
+            fail();
+        }
+    }
 }
